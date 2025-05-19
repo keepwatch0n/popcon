@@ -1,0 +1,582 @@
+
+
+rows = int(input("Enter the row size for the pattern: "))
+for i in range(1, rows + 1):  # Outer loop for rows
+    for j in range(1, i + 1):  # Inner loop for columns
+        print("*", end=" ")   # Print star
+    print()
+
+Output:
+Enter the row size for the pattern: 5
+* 
+* * 
+* * * 
+* * * * 
+* * * * * 
+
+rows = int(input("Enter the row size for the pattern: "))
+for i in range(rows, 0, -1):  # Outer loop for rows in reverse
+    for j in range(1, i + 1):  # Inner loop for columns
+        print("*", end=" ")   # Print star
+    print()
+
+Output:
+Enter the row size for the pattern: 5
+* * * * * 
+* * * * 
+* * * 
+* * 
+* 
+
+rows = int(input("Enter the row size for the pattern: "))
+for i in range(1, rows + 1):  # Outer loop for rows
+    for j in range(rows  - i):  # Inner loop for spaces
+        print(" ", end=" ")
+    for k in range(1, 2 * i):  # Inner loop for stars
+        print("*", end=" ")
+    print()
+
+Output:
+Enter the row size for the pattern: 5
+        * 
+      * * * 
+    * * * * * 
+  * * * * * * * 
+* * * * * * * * * 
+
+rows = int(input("Enter the row size for the pattern: "))
+for i in range(rows , 0, -1):  # Outer loop for rows in reverse
+    for j in range(rows  - i):  # Inner loop for spaces
+        print(" ", end=" ")
+    for k in range(1, 2 * i):  # Inner loop for stars
+        print("*", end=" ")
+    print()  # Move to the next line
+
+Output:
+Enter the row size for the pattern: 5
+* * * * * * * * * 
+  * * * * * * * 
+    * * * * * 
+      * * * 
+        * 
+
+rows = int(input("Enter the row size for the pattern: "))
+for i in range(1,rows + 1):  # Upper part of diamond
+    for j in range(rows  - i):
+        print(" ", end=" ")
+    for k in range(1, 2 * i):
+        print("*", end=" ")
+    print()
+for i in range(rows  - 1, 0, -1):  # Lower part of diamond
+    for j in range(rows  - i):
+        print(" ", end=" ")
+    for k in range(1, 2 * i):
+        print("*", end=" ")
+    print()
+
+Output:
+Enter the row size for the pattern: 4
+      * 
+    * * * 
+  * * * * * 
+* * * * * * * 
+  * * * * * 
+    * * * 
+      * 
+
+rows = int(input("Enter the row size for the pattern: "))
+for i in range(1, rows + 1):  # Outer loop for rows
+    for j in range(1, rows + 1):  # Inner loop for columns
+        if i == 1 or i == rows or j == 1 or j == rows :  # Print star only on borders
+            print("*", end=" ")
+        else:
+            print(" ", end=" ")  # Print space inside
+    print()
+
+Output:
+Enter the row size for the pattern: 5
+* * * * * 
+*       * 
+*       * 
+*       * 
+* * * * * 
+
+rows = int(input("Enter the row size for the pattern: "))
+for i in range(1, rows + 1):  # Outer loop for rows
+    for j in range(1, i + 1):  # Inner loop for columns
+        if j == 1 or i == rows or i == j:  # Print star on borders
+            print("*", end=" ")
+        else:
+            print(" ", end=" ")  # Print space inside
+    print()
+
+Output:
+Enter the row size for the pattern: 5
+* 
+* * 
+*   * 
+*     * 
+* * * * * 
+
+rows = int(input("Enter the row size for the pattern:"))
+for i in range(rows , 0, -1):  # Outer loop for rows in reverse
+    for j in range(1, i + 1):  # Inner loop for columns
+        if j == 1 or i == rows or i == j:  # Print star on borders
+            print("*", end=" ")
+        else:
+            print(" ", end=" ")  # Print space inside
+    print()  # Move to the next line
+
+Output:
+Enter the row size for the pattern: 4
+* * * * 
+*   * 
+* * 
+* 
+
+rows = int(input("Enter the row size for the pattern: "))
+for i in range(1, rows + 1):  # Outer loop for rows
+    for j in range(rows  - i):  # Inner loop for spaces
+        print(" ", end=" ")
+    for k in range(1, 2 * i):  # Inner loop for stars
+        if k == 1 or k == 2 * i - 1 or i == rows:  # Print star on borders
+            print("*", end=" ")
+        else:
+            print(" ", end=" ")  # Print space inside
+    print()
+
+Output:
+Enter the row size for the pattern: 5
+        * 
+      *   * 
+    *       * 
+  *           * 
+* * * * * * * * * 
+
+rows = int(input("Enter the row size for the pattern: "))
+for i in range(rows, 0, -1):  # Outer loop for rows in reverse
+    for j in range(rows - i):  # Inner loop for spaces
+        print(" ", end=" ")
+    for k in range(1, 2 * i):  # Inner loop for stars
+        if k == 1 or k == 2 * i - 1 or i == rows:  # Print star on borders
+            print("*", end=" ")
+        else:
+            print(" ", end=" ")  # Print space inside
+    print()
+
+Output:
+Enter the row size for the pattern: 5
+* * * * * * * * * 
+  *           * 
+    *       * 
+      *   * 
+        * 
+
+rows = int(input("Enter the row size for the pattern: "))
+for i in range(1, rows + 1):  # Upper part of diamond
+    for j in range(rows - i):
+        print(" ", end=" ")
+    for k in range(1, 2 * i):
+        if k == 1 or k == 2 * i - 1:  # Print star on borders
+            print("*", end=" ")
+        else:
+            print(" ", end=" ")  # Print space inside
+    print()
+for i in range(rows - 1, 0, -1):  # Lower part of diamond
+    for j in range(rows - i):
+        print(" ", end=" ")
+    for k in range(1, 2 * i):
+        if k == 1 or k == 2 * i - 1:  # Print star on borders
+            print("*", end=" ")
+        else:
+            print(" ", end=" ")  # Print space inside
+    print()
+
+Output:
+Enter the row size for the pattern: 5
+        * 
+      *   * 
+    *       * 
+  *           * 
+*               * 
+  *           * 
+    *       * 
+      *   * 
+        * 
+rows = int(input("Enter the row size for the pattern:"))
+for i in range(1, rows + 1):  # Outer loop for rows
+    for j in range(1, i + 1):  # Inner loop for columns
+        print(j, end=" ")  # Print numbers
+    print()
+
+Output:
+Enter the row size for the pattern: 4
+1 
+1 2 
+1 2 3 
+1 2 3 4 
+
+rows = int(input("Enter the row size for the pattern: "))
+for i in range(rows, 0, -1):  # Outer loop for rows in reverse
+    for j in range(1, i + 1):  # Inner loop for columns
+        print(j, end=" ")  # Print numbers
+    print()
+
+Output:
+Enter the row size for the pattern: 5
+1 2 3 4 5 
+1 2 3 4 
+1 2 3 
+1 2 
+1 
+
+rows = int(input("Enter the row size for the pattern: "))
+for i in range(1, rows + 1):  # Outer loop for rows
+    for j in range(rows  - i):  # Inner loop for spaces
+        print(" ", end=" ")
+    for k in range(1, i + 1):  # Inner loop for numbers
+        print(k, end=" ")
+    for l in range(i - 1, 0, -1):  # Inner loop for reverse numbers
+        print(l, end=" ")
+    print()
+
+Output:
+Enter the row size for the pattern: 5
+        1 
+      1 2 1 
+    1 2 3 2 1 
+  1 2 3 4 3 2 1 
+1 2 3 4 5 4 3 2 1 
+
+rows = int(input("Enter the row size for the pattern: "))
+for i in range(rows, 0, -1):  # Outer loop for rows in reverse
+    for j in range(rows - i):  # Inner loop for spaces
+        print(" ", end=" ")
+    for k in range(1, i + 1):  # Inner loop for numbers
+        print(k, end=" ")
+    for l in range(i - 1, 0, -1):  # Inner loop for reverse numbers
+        print(l, end=" ")
+    print()
+
+Output:
+Enter the row size for the pattern: 5
+1 2 3 4 5 4 3 2 1 
+  1 2 3 4 3 2 1 
+    1 2 3 2 1 
+      1 2 1 
+        1 
+
+rows = int(input(rows"Enter the row size for the pattern: "))
+for i in range(1, rows + 1):  # Upper part of diamond
+    for j in range( - i):
+        print(" ", end=" ")
+    for k in range(1, i + 1):
+        print(k, end=" ")
+    for l in range(i - 1, 0, -1):
+        print(l, end=" ")
+    print()
+for i in range(rows - 1, 0, -1):  # Lower part of diamond
+    for j in range(rows - i):
+        print(" ", end=" ")
+    for k in range(1, i + 1):
+        print(k, end=" ")
+    for l in range(i - 1, 0, -1):
+        print(l, end=" ")
+    print()
+
+Output:
+Enter the row size for the pattern: 4
+      1 
+    1 2 1 
+  1 2 3 2 1 
+1 2 3 4 3 2 1 
+  1 2 3 2 1 
+    1 2 1 
+      1 
+
+rows = int(input("Enter the row size for the pattern: "))
+for i in range(1, rows + 1):  # Outer loop for rows
+    for j in range(1, i + 1):  # Inner loop for columns
+        print(chr(64 + j), end=" ")  # Print alphabets
+    print()
+
+Output:
+Enter the row size for the pattern: 5
+A 
+A B 
+A B C 
+A B C D 
+A B C D E 
+
+rows = int(input("Enter the row size for the pattern: "))
+for i in range(rows, 0, -1):  # Outer loop for rows in reverse
+    for j in range(1, i + 1):  # Inner loop for columns
+        print(chr(64 + j), end=" ")  # Print alphabets
+    print()  # Move to the next line
+
+Output:
+Enter the row size for the pattern: 5
+A B C D E 
+A B C D 
+A B C 
+A B 
+A 
+
+
+rows = int(input("Enter the row size for the pattern: "))
+for i in range(1, rows + 1):  # Outer loop for rows
+    for j in range(rows - i):  # Inner loop for spaces
+        print(" ", end=" ")
+    for k in range(1, i + 1):  # Inner loop for alphabets
+        print(chr(64 + k), end=" ")
+    for l in range(i - 1, 0, -1):  # Inner loop for reverse alphabets
+        print(chr(64 + l), end=" ")
+    print()
+
+Output:
+Enter the row size for the pattern: 5
+        A 
+      A B A 
+    A B C B A 
+  A B C D C B A 
+A B C D E D C B A 
+
+
+rows = int(input("Enter the row size for the pattern: "))
+for i in range(rows, 0, -1):  # Outer loop for rows in reverse
+    for j in range(rows - i):  # Inner loop for spaces
+        print(" ", end=" ")
+    for k in range(1, i + 1):  # Inner loop for alphabets
+        print(chr(64 + k), end=" ")
+    for l in range(i - 1, 0, -1):  # Inner loop for reverse alphabets
+        print(chr(64 + l), end=" ")
+    print()  # Move to the next line
+
+Output:
+Enter the row size for the pattern: 5
+A B C D E D C B A 
+  A B C D C B A 
+    A B C B A 
+      A B A 
+        A 
+
+rows = int(input("Enter the row size for the pattern: "))
+for i in range(1, rows + 1):  # Upper part of diamond
+    for j in range(rows - i):
+        print(" ", end=" ")
+    for k in range(1, i + 1):
+        print(chr(64 + k), end=" ")
+    for l in range(i - 1, 0, -1):
+        print(chr(64 + l), end=" ")
+    print()
+for i in range(rows - 1, 0, -1):  # Lower part of diamond
+    for j in range(rows - i):
+        print(" ", end=" ")
+    for k in range(1, i + 1):
+        print(chr(64 + k), end=" ")
+    for l in range(i - 1, 0, -1):
+        print(chr(64 + l), end=" ")
+    print()
+
+Output:
+Enter the row size for the pattern: 5
+        A 
+      A B A 
+    A B C B A 
+  A B C D C B A 
+A B C D E D C B A 
+  A B C D C B A 
+    A B C B A 
+      A B A 
+        A 
+
+rows = int(input("Enter the row size for the pattern: "))
+num = 1
+for i in range(1, rows + 1):  # Outer loop for rows
+    for j in range(1, i + 1):  # Inner loop for columns
+        print(num, end=" ")  # Print numbers in sequence
+        num += 1
+    print()
+
+Output:
+Enter the row size for the pattern: 5
+1 
+2 3 
+4 5 6 
+7 8 9 10 
+11 12 13 14 15 
+
+rows = int(input("Enter the row size for the pattern: "))
+for i in range(rows ):  # Outer loop for rows
+    num = 1
+    for j in range(rows - i):  # Inner loop for spaces
+        print(" ", end=" ")
+    for k in range(i + 1):  # Inner loop for numbers
+        print(num, end="   ")
+        num = num * (i - k) // (k + 1)  # Calculate Pascal's number
+    print()
+
+Output:
+Enter the row size for the pattern: 5
+          1   
+        1   1   
+      1   2   1   
+    1   3   3   1   
+  1   4   6   4   1   
+
+
+rows = int(input("Enter the row size for the pattern: "))
+for i in range(1, rows + 1):  # Upper part of butterfly
+    for j in range(1, i + 1):
+        print("*", end=" ")
+    for j in range(2 * (rows - i)):
+        print(" ", end=" ")
+    for j in range(1, i + 1):
+        print("*", end=" ")
+    print()
+for i in range(rows, 0, -1):  # Lower part of butterfly
+    for j in range(1, i + 1):
+        print("*", end=" ")
+    for j in range(2 * (rows - i)):
+        print(" ", end=" ")
+    for j in range(1, i + 1):
+        print("*", end=" ")
+    print()
+
+Output:
+Enter the row size for the pattern: 5
+*                 * 
+* *             * * 
+* * *         * * * 
+* * * *     * * * * 
+* * * * * * * * * * 
+* * * * * * * * * * 
+* * * *     * * * * 
+* * *         * * * 
+* *             * * 
+*                 * 
+
+rows = int(input("Enter the row size for the pattern: "))
+for i in range(1, rows + 1):  # Upper part of butterfly
+    for j in range(1, i + 1):
+        if j == 1 or j == i:
+            print("*", end=" ")
+        else:
+            print(" ", end=" ")
+    for j in range(2 * (rows - i)):
+        print(" ", end=" ")
+    for j in range(1, i + 1):
+         if j == 1 or j == i:
+            print("*", end=" ")
+        else:
+            print(" ", end=" ")
+ o  print()
+for i in range(rows, 0, -1):  # Lower part of butterfly
+    fr j in range(1, i + 1):
+        if j == 1 or j == i:
+            print("*", end=" ")
+        else:
+            print(" ", end=" ")
+    for j in range(2 * (rows - i)):
+        print(" ", end=" ")
+    for j in range(1, i + 1):
+        if j == 1 or j == i:
+            print("*", end=" ")
+        else:
+            print(" ", end=" ")
+    print()
+
+Output:
+Enter the row size for the pattern: 5
+*                 * 
+* *             * * 
+*   *         *   * 
+*     *     *     * 
+*       * *       * 
+*       * *       * 
+*     *     *     * 
+*   *         *   * 
+* *             * * 
+*                 * 
+
+rows = int(input("Enter the row size for the pattern: "))
+for i in range(1, rows + 1):  # Outer loop for rows
+    for j in range(1, rows + 1):  # Inner loop for columns
+        print(j, end=" ")  # Print numbers
+    print()
+
+Output:
+Enter the row size for the pattern: 4
+1 2 3 4 
+1 2 3 4 
+1 2 3 4 
+1 2 3 4 
+
+rows = int(input("Enter the row size for the pattern: "))
+for i in range(1, rows + 1):  # Outer loop for rows
+    for j in range(1, rows + 1):  # Inner loop for columns
+        if i == 1 or i == rows or j == 1 or j == rows:  # Print numbers only on borders
+            print(j, end=" ")
+        else:
+            print(" ", end=" ")  # Print space inside
+    print()  # Move to the next line
+
+Output:
+Enter the row size for the pattern: 5
+1 2 3 4 5 
+1       5 
+1       5 
+1       5 
+1 2 3 4 5 
+
+rows = int(input("Enter the row size for the pattern: "))
+for i in range(1, rows + 1):  # Outer loop for rows
+    for j in range(1, rows + 1):  # Inner loop for columns
+        if (i + j) % 2 == 0:  # Print numbers in zig-zag pattern
+            print("1", end=" ")
+        else:
+            print("0", end=" ")
+    print()
+
+Output:
+Enter the row size for the pattern: 4
+1 0 1 0 
+0 1 0 1 
+1 0 1 0 
+0 1 0 1 
+
+rows = int(input("Enter the row size for the pattern:"))
+for i in range(1, rows + 1):  # Outer loop for rows
+    for j in range(1, rows + 1):  # Inner loop for columns
+        if i == j or i + j == rows + 1:  # Print stars in cross pattern
+            print("*", end=" ")
+        else:
+            print(" ", end=" ")  # Print space
+    print()
+
+Output:
+Enter the row size for the pattern: 5
+*       * 
+  *   *   
+    *     
+  *   *   
+*       * 
+
+
+rows = int(input("Enter the row size for the pattern: "))
+for i in range(1, rows + 1):  # Outer loop for rows
+    for j in range(1, rows  + 1):  # Inner loop for columns
+        if i == rows  // 2 + 1 or j == rows  // 2 + 1:  # Print stars in plus pattern
+            print("*", end=" ")
+        else:
+            print(" ", end=" ")  # Print space
+    print()
+
+Output:
+Enter the row size for the pattern: 5
+    *     
+    *     
+* * * * * 
+    *     
+    *     
+

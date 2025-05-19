@@ -1,0 +1,62 @@
+
+Docker CLI Cheat Sheet
+
+BASICS
+docker version                     # Show Docker version info
+docker info                        # Show system-wide info
+docker <command> --help            # Show help for a command
+
+LOGIN
+docker login                       # Login to Docker Hub (prompts for username & password)
+docker login -u <username>         # Login with username (prompts for password)
+docker logout                      # Logout from Docker Hub
+
+IMAGES
+docker images                      # List images
+docker pull <image>               # Pull an image from a registry
+docker build -t <name> .          # Build image from Dockerfile
+docker rmi <image>                # Remove image
+docker tag <image> <new_name>     # Tag image with a new name
+docker push <username>/<image>     # Push image to Docker Hub
+
+CONTAINERS
+docker ps                          # List running containers
+docker ps -a                       # List all containers
+docker run <image>                # Run container from image
+docker run -it <image> bash       # Interactive bash shell in container
+docker run -d <image>             # Detached mode
+docker run -p 80:80 <image>       # Map port 80 of host to 80 of container
+docker exec -it <container> bash  # Run command in running container
+docker stop <container>           # Stop container
+docker start <container>          # Start stopped container
+docker restart <container>        # Restart container
+docker rm <container>             # Remove container
+
+VOLUMES
+docker volume create <name>       # Create a volume
+docker volume ls                  # List volumes
+docker volume inspect <name>      # Inspect volume
+docker volume rm <name>           # Remove volume
+docker run -v <vol>:/path <img>   # Mount volume inside container
+
+NETWORKS
+docker network ls                 # List networks
+docker network create <name>     # Create network
+docker network inspect <name>    # Inspect network
+docker network connect <net> <container>  # Connect container to network
+docker network disconnect <net> <container>  # Disconnect container
+
+DOCKER COMPOSE
+docker-compose up                 # Start services
+docker-compose down               # Stop services
+docker-compose build              # Build services
+docker-compose logs               # View logs
+docker-compose ps                 # List containers
+
+OTHER USEFUL COMMANDS
+docker logs <container>           # View container logs
+docker inspect <container/image>  # Detailed information
+docker stats                      # Show container resource usage
+docker top <container>            # Show running processes
+docker history <image>            # Show image history
+docker diff <container>           # Show changes in container FS

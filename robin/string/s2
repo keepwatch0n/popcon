@@ -1,0 +1,164 @@
+7. Find all overlapping occurrences of given substring in given string
+Ex.
+String = 0111
+Substring = 11
+Expected answer : 2
+String : ANANAAAANNN
+Substring: ANA
+Expected answer : 2
+String : ANANAAAANNN
+Substring: AA
+Expected answer : 3
+
+Answer
+
+string = "0111"
+substring = "11"
+
+count = 0
+for i in range(len(string) - len(substring) + 1):
+    if string[i:i+len(substring)] == substring:
+        count += 1
+
+print(count)
+
+
+8. Given a string in format Emp_name:Emp_id
+If emp_is is perfect square -- > Print only vowels from emp_name
+Else if emp_id is prime -- > print alternate characters from emp_name
+Else if emp_id is odd -- > print sum of ascii values of characters in emp_name
+Else print None
+
+Answer
+
+import math
+
+data = "Rakesh:49"
+
+name, emp_id = data.split(":")
+emp_id = int(emp_id)
+
+def is_perfect_square(n):
+    return int(math.sqrt(n)) ** 2 == n
+
+def is_prime(n):
+    if n < 2:
+        return False
+    for i in range(2, int(n**0.5)+1):
+        if n % i == 0:
+            return False
+    return True
+
+if is_perfect_square(emp_id):
+    vowels = ""
+    for ch in name:
+        if ch.lower() in "aeiou":
+            vowels += ch
+    print(vowels)
+
+elif is_prime(emp_id):
+    result = ""
+    for i in range(0, len(name), 2):
+        result += name[i]
+    print(result)
+
+elif emp_id % 2 == 1:
+    total = 0
+    for ch in name:
+        total += ord(ch)
+    print(total)
+
+else:
+    print("None")
+
+
+9. Find all mobile number mentioned in given paragraph of text
+Mobile number is always a 10 digit number no spaces no special characters
+Ex. Input= “this is a good number 9089786756 and 8900000000 is a desired number”
+Expected output: 9089786756 , 8900000000
+
+Answer
+
+import re
+
+text = "this is a good number 9089786756 and 8900000000 is a desired number"
+
+numbers = re.findall(r'\b\d{10}\b', text)
+
+print(", ".join(numbers))
+
+
+10. Count occurrence of spaces, and special characters in given string
+Ex.
+Input: Fgh^f #89
+Expected output :
+Spaces: 1
+Special characters: 2
+
+Answer
+
+s = "Fgh^f #89"
+spaces = 0
+special = 0
+for c in s:
+    if c == " ":
+        spaces += 1
+    elif not c.isalnum():
+        special += 1
+print("Spaces:", spaces)
+print("Special characters:", special)
+
+
+11. Given a paragraph count number of words, sentences. Every sentence ends with either . or ? or !
+Print Count of how many normal sentences ending with . , how many interrogative sentences ( ending
+with ?) and how many exclamatory sentences ( ending with !).
+Ex.
+Input : “I am at CDAC. What about you? I am surprised by current weather!”
+Normal sentence : 1
+Interrogative: 1
+Exclamatory : 1
+
+Answer
+
+paragraph = "I am at CDAC. What about you? I am surprised by current weather!"
+normal = 0
+interrogative = 0
+exclamatory = 0
+words = len(paragraph.split())
+
+for char in paragraph:
+    if char == ".":
+        normal += 1
+    elif char == "?":
+        interrogative += 1
+    elif char == "!":
+        exclamatory += 1
+
+print("Words:", words)
+print("Normal sentence :", normal)
+print("Interrogative:", interrogative)
+print("Exclamatory :", exclamatory)
+
+
+12. You are given a string S and width w.
+Your task is to wrap the string into a paragraph of width w
+Example .
+String : “ABCDEFGHIJKLIMNOQRSTUVWXYZ”
+Width: 4
+Output:
+ABCD
+EFGH
+IJKL
+IMNO
+QRST
+UVWX
+YZ
+
+Answer
+
+S = "ABCDEFGHIJKLIMNOQRSTUVWXYZ"
+w = 4
+
+for i in range(0, len(S), w):
+    print(S[i:i+w])
+

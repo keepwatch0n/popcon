@@ -1,0 +1,29 @@
+mkdir project
+cd project
+
+ssh-keygen
+public key -> copy -> Github -> settings- > deploy key -> ssh => write permission tick....
+
+
+GIT CONFIG------
+=================
+git init                                           Initialization
+git config user.email "EMAIL"				to config user email
+git config user.name "username"				to config user name
+
+git remote add origin "SSH"				to add shortname for remote repo
+
+#IF YOU BY MISTAKE ADD THE FALSE ORIGIN"
+############### git remote remove origin ((IF you want to remove the already added origin) ######## 
+
+
+
+echo "Hello" | tee index.html
+
+git status						To know the status
+	
+git add .						to add the files into the staging area
+
+git commit -m "MESSAGE"					to commit the changes.
+
+git push origin master					push it to remote repo.

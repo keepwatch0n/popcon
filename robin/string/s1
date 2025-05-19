@@ -1,0 +1,128 @@
+1. Given a string of odd length greater than 7, return a new string made of the middle three characters
+of a given String
+Given:
+str1 = "RakeshzipPetabb"
+Output
+zip
+str2 = "JazzbonAyxx"
+Output
+bon
+
+answer
+
+str1 = "RakeshzipPetabb"
+mid1 = len(str1) // 2
+print(str1[mid1 - 1: mid1 + 2])
+
+str2 = "JazzbonAyxx"
+mid2 = len(str2) // 2
+print(str2[mid2 - 1: mid2 + 2])
+
+
+2. Given two strings, s1 and s2, create a new string by appending s2 in the middle of s1
+Given:
+s1 = "Ault"
+s2 = "Kelly"
+Expected Output:
+AuKellylt
+
+Annwer
+
+s1 = "Ault"
+s2 = "Kelly"
+mid = len(s1) // 2
+result = s1[:mid] + s2 + s1[mid:]
+print(result)
+
+
+3. two strings, s1, and s2 return a new string made of the first, middle, and last characters each input
+string
+Given:
+s1 = "America"
+s2 = "Japan"
+Expected Output:
+AJrpan
+
+Answer
+
+s1 = "America"
+s2 = "Japan"
+
+first = s1[0] + s2[0]
+middle = s1[len(s1)//2] + s2[len(s2)//2]
+last = s1[-1] + s2[-1]
+
+result = first + middle + last
+print(result)
+
+4. Given an input string with the combination of the lower and upper case arrange characters in such a
+way that all lowercase letters should come first.
+
+Answer
+
+str1 = "PyThOnProGrAm"
+
+lower = ""
+upper = ""
+
+for ch in str1:
+    if ch.islower():
+        lower += ch
+    else:
+        upper += ch
+
+result = lower + upper
+print(result)
+
+5. create a third-string made of the first char of s1 then the last char of s2, Next, the second char of s1
+and second last char of s2, and so on. Any leftover chars go at the end of the result.
+Given:
+s1 = "Abc"
+s2 = "Xyz"
+Expected Output:
+AzbycX
+
+Answer
+
+s1 = "Abc"
+s2 = "Xyz"
+
+s2 = s2[::-1]
+length = max(len(s1), len(s2))
+result = ""
+
+for i in range(length):
+    if i < len(s1):
+        result += s1[i]
+    if i < len(s2):
+        result += s2[i]
+
+print(result)
+
+
+6. Find all occurrences of “USA” from right to left in a given string ignoring the case. also display the
+starting position
+Given:
+str1 = "Welcome to USA. usa awesome, isn't it?
+Expected answer : 16, 11
+
+Answer
+
+str1 = "Welcome to USA. usa awesome, isn't it?"
+
+str_lower = str1.lower()
+sub = "usa"
+positions = []
+
+index = len(str1)
+while True:
+    index = str_lower.rfind(sub, 0, index)
+    if index == -1:
+        break
+    positions.append(index)
+    index -= 1
+
+print(", ".join(map(str, positions)))
+
+
+
