@@ -1,0 +1,34 @@
+Datatypes in SQL :
+1. CHAR
+2. VARCHAR / VARCHAR2
+3. DATE
+4. NUMBER
+LARGE OBJECTS
+i. Character Large Object .
+ii. Binary Large Object .
+
+
+Types of Constraints :
+1. UNIQUE
+2. NOT NULL
+3. CHECK
+4. PRIMARY KEY
+5. FOREIGN KEY .
+
+Syntax to create a table :
+
+CREATE TABLE Table_Name
+(
+Column_Name1 datatype constraint_type ,
+Column_Name2 datatype constraint_type ,
+Column_Name3 datatype constraint_type ,
+.
+.
+Column_NameN datatype constraint_type
+
+);
+
+1. INSERT : It is used to insert / create records in the table .
+Syntax: INSERT INTO Table_Name VALUES( v1 , v2 , v3 …… ) ; 
+
+
