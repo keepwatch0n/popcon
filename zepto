@@ -1,0 +1,41 @@
+Zeronization of a File using shred
+ 
+Step 1: Make a Dummy File
+	echo "Top secret content" > secret.txt
+Step 2: Wipe the File with shred
+	shred -u -v secret.txt
+	
+	
+Explanation:
+
+-u: delete the file after overwriting
+
+-v: verbose (show progress)
+
+
+Zeronization of Full Device using dd
+
+Step 1: Find Your USB
+	sudo fdisk -l
+Example: Let’s say your USB is /dev/sdb
+
+Step 2: Wipe the Entire USB with Zeros
+	sudo dd if=/dev/zero of=/dev/sdb bs=1M status=progress
+
+Explanation:
+
+if=/dev/zero: input is a stream of zeros
+
+of=/dev/sdb: output to your USB device
+
+bs=1M: block size = 1MB
+
+status=progress: shows real-time progress
+
+
+
+
+Tool		Use
+dd			Poore device ko 0s se fill karna
+shred		Individual file ko wipe karna
+wipe		(optional) Secure deletion for files

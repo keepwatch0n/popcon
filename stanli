@@ -1,0 +1,29 @@
+Stanli 
+
+install First 
+
+	sudo apt install steghide -y 
+	
+To emmbed a file or message to a image we use this command 
+
+	steghide embed -cf input.jpg -ef secret.txt
+
+To retrive or see the message from a file we use this command 
+
+	steghide extract -sf input.jpg
+
+
+
+Flag-by-Flag Breakdown:
+
+Flag		Full Form				Meaning in Hindi (Hinglish Style)
+
+-cf			cover file				Image/audio file jisme secret data chhupana hai (e.g., cover.jpg)
+-ef			embed file				Woh file jisko chhupana hai (e.g., secret.txt, virus.exe)
+-sf			stego file				Jisme data chhupa hua hai, use extract karne ke liye diya jata hai
+-p			passphrase				Password set ya use karne ke liye (optional, but safer)
+-xf			extract file			Extracted file ka naam specify karne ke liye (optional)
+
+
+
+

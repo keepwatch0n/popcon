@@ -1,0 +1,127 @@
+Root CA → Sub CA → Web Server → HTTPS
+
+ deb1 (Root CA Machine)
+├── Setup CA Directory
+│   ├── mkdir -p ~/ca/{certs,crl,csr,newcerts,private}
+│   ├── chmod 700 ~/ca/private
+│   ├── cd ~/ca
+│   ├── touch index.txt index.txt.attr
+│   ├── echo 1000 > serial
+│   └── echo 1000 > crlnumber
+│
+├── Create rootca.cnf
+│   └── nano ~/ca/rootca.cnf
+│       └── [set dir = /home/shuhari/ca, policy, dn, v3_ca...]
+│
+├── Install OpenSSL
+│   └── sudo apt install openssl
+│
+├── Generate Root Private Key
+│   ├── openssl genrsa -aes256 -out private/ca.key.pem 4096
+│   └── chmod 400 private/ca.key.pem
+│
+├── Generate Self-Signed Root Certificate
+│   └── openssl req -config rootca.cnf -key private/ca.key.pem -new -x509 \
+│             -days 7300 -sha256 -extensions v3_ca -out certs/ca.cert.pem
+│
+└── Sign Sub CA CSR (later)
+    └── openssl ca -config rootca.cnf -extensions v3_intermediate_ca \
+              -days 3650 -notext -md sha256 \
+              -in subca/csr/subca.csr.pem \
+              -out subca/certs/subca.cert.pem
+
+
+
+
+
+deb2 (Subordinate CA Machine)
+├── Setup Sub CA Directory
+│   ├── mkdir -p ~/ca/subca/{certs,crl,csr,newcerts,private}
+│   ├── cd ~/ca/subca
+│   ├── chmod 700 private
+│   ├── touch index.txt index.txt.attr
+│   ├── echo 1000 > serial
+│   └── echo 1000 > crlnumber
+│
+├── Create subca.cnf
+│   └── nano ~/ca/subca/subca.cnf
+│       └── [set dir = /home/shuhari/ca/subca, policy_loose, v3_intermediate_ca...]
+│
+├── Generate Sub CA Private Key
+│   ├── openssl genrsa -out private/subca.key.pem 4096
+│   └── chmod 400 private/subca.key.pem
+│
+├── Generate CSR (Certificate Signing Request)
+│   └── openssl req -config subca.cnf -new -sha256 \
+│             -key private/subca.key.pem -out csr/subca.csr.pem
+│
+├── Send CSR to Root CA (deb1)
+│   └── scp csr/subca.csr.pem deb1:/home/shuhari/ca/subca/csr/
+│
+├── Receive Signed Certificate from Root
+│   └── scp deb1:/home/shuhari/ca/subca/certs/subca.cert.pem certs/
+│
+└── Sign Web Server CSR (later)
+    └── openssl ca -config subca.cnf -extensions server_cert \
+              -days 375 -notext -md sha256 \
+              -in csr/www.shuhari.local.csr.pem \
+              -out certs/www.shuhari.local.cert.pem
+
+
+
+
+
+deb3 (Web Server Machine)
+├── Setup Web Cert Folder
+│   └── mkdir -p ~/ca/certs && cd ~/ca
+│
+├── Add alt_name to subca.cnf
+│   └── nano subca.cnf
+│       └── [alt_names] DNS.1 = *.shuhari.local
+│
+├── Generate Private Key (no password)
+│   ├── openssl genrsa -out certs/www.shuhari.local.key.pem 2048
+│   └── chmod 400 certs/www.shuhari.local.key.pem
+│
+├── Generate CSR
+│   └── openssl req -config subca.cnf -key certs/www.shuhari.local.key.pem \
+│             -new -sha256 -out certs/www.shuhari.local.csr.pem
+│
+├── Send CSR to Sub CA (deb2)
+│   └── scp certs/www.shuhari.local.csr.pem deb2:/home/shuhari/ca/subca/csr/
+│
+├── Receive Signed Certificate + Chain
+│   └── scp deb2:/home/shuhari/ca/subca/certs/www.shuhari.local.cert.pem certs/
+│       scp deb2:/home/shuhari/ca/subca/certs/subca.cert.pem certs/
+│       scp deb1:/home/shuhari/ca/certs/ca.cert.pem certs/
+│
+├── Create Certificate Chain
+│   └── cat www.shuhari.local.cert.pem subca.cert.pem ca.cert.pem \
+│         > www.shuhari.local.cert.chain.pem
+│
+├──Install Apache
+│   └── sudo apt install apache2
+│
+├──Prepare SSL Directory
+│   ├── sudo mkdir -p /etc/apache2/ssl
+│   └── sudo cp certs/www.shuhari.local.* /etc/apache2/ssl/
+│
+├── Configure Apache SSL
+│   └── sudo nano /etc/apache2/sites-available/default-ssl.conf
+│       ├── SSLEngine on
+│       ├── SSLCertificateFile    /etc/apache2/ssl/www.shuhari.local.cert.chain.pem
+│       └── SSLCertificateKeyFile /etc/apache2/ssl/www.shuhari.local.key.pem
+│
+├──Enable SSL & Site
+│   ├── sudo a2enmod ssl
+│   ├── sudo a2ensite default-ssl
+│   └── sudo systemctl restart apache2
+│
+└── Access HTTPS
+    └── https://www.shuhari.local
+        └── (if untrusted → import ca.cert.pem to browser)
+
+
+
+
+

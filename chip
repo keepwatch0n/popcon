@@ -1,0 +1,58 @@
+Asymmetric Encryption + SHA + HMAC
+
+Step 1: Install OpenSSL
+
+	sudo apt update
+	sudo apt install openssl
+
+
+PART 1: Asymmetric Encryption (RSA)
+
+	# Create a private key (2048 bits)
+	openssl genpkey -algorithm RSA -out private_key.pem -pkeyopt rsa_keygen_bits:2048
+
+	# Extract public key from private key
+	openssl rsa -pubout -in private_key.pem -out public_key.pem
+
+private_key.pem → RSA Private Key
+
+public_key.pem → RSA Public Key
+
+Step 3: Create a Message File
+
+	echo "Hello Aditya, this is RSA Encryption!" > message.txt
+
+Step 4: Encrypt with Public Key
+
+	openssl rsautl -encrypt -inkey public_key.pem -pubin -in message.txt -out message.enc
+
+message.enc → Encrypted binary file
+
+Step 5: Decrypt with Private Key
+
+	openssl rsautl -decrypt -inkey private_key.pem -in message.enc -out decrypted.txt
+	cat decrypted.txt
+
+
+PART 2: Secure Hashing (SHA256)
+
+Step 1: Create a Sample File to Hash
+
+	echo "This is a file for hashing." > hashfile.txt
+
+Step 2: Generate SHA256 Hash
+
+	openssl dgst -sha256 hashfile.txt
+
+
+PART 3: HMAC using SHA256
+
+Step 1: Create a Secret Key
+	
+	echo -n "myHMACsecretKey" > keyfile.key
+
+Step 2: Generate HMAC-SHA256 of the File
+
+	openssl dgst -sha256 -hmac "$(cat keyfile.key)" hashfile.txt
+
+
